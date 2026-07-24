@@ -184,8 +184,4 @@ Use sample/demo data when publishing the project for academic or portfolio purpo
 
 Innovest Connect is an academic/portfolio project created to demonstrate a startup-investor platform concept. It should be reviewed and secured further before being used with real users or sensitive data.
 
-## Author
 
-**Kala**
-
-MCA Student
