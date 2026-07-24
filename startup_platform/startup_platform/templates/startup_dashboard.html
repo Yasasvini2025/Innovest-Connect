@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Startup Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; }
+    .navbar { display: flex; justify-content: space-between; padding: 1rem; background: #333; color: #fff; }
+    .navbar a { color: #fff; margin-left: 1rem; text-decoration: none; }
+    .logo { font-weight: bold; font-size: 1.2rem; }
+    header { padding: 2rem; text-align: center; background: #4889d3; color: #fff; }
+    main.dashboard { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; padding: 2rem; }
+    .card { background: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 350px; }
+    .card h2 { margin-top: 0; }
+    .card ul { list-style: none; padding-left: 0; }
+    .project-card { background: #e9ecef; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 5px; }
+    .project-card form { display: inline-block; margin-left: 0.5rem; }
+    button { cursor: pointer; padding: 0.3rem 0.6rem; border: none; border-radius: 4px; background: #007bff; color: #fff; }
+    button.delete { background: #dc3545; }
+    input, textarea, select { width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 4px; border: 1px solid #ccc; }
+    input[type="file"] { padding: 0.2rem; }
+    label { font-weight: bold; margin-top: 0.5rem; display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Particle container for random roaming particles -->
+  <div id="tsparticles"></div>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="{{ url_for('home') }}" class="logo">InnoVest Connect</a>
+    </div>
+    <div class="nav-right">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('home') }}about">About</a>
+      {% if session.get('user_type') == 'startup' %}
+        <a href="{{ url_for('startup_dashboard') }}">Startup Dashboard</a>
+      {% elif session.get('user_type') == 'investor' %}
+        <a href="{{ url_for('investor_dashboard') }}">Investor Dashboard</a>
+      {% endif %}
+      {% if session.get('username') %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <header>
+    <h1>🚀 Welcome, {{ session['username'] }}!</h1>
+  </header>
+
+  <main class="dashboard">
+    <!-- Redirect to Project Submission Page -->
+    <div class="card">
+      <h2>Post a New Project</h2>
+      <a href="{{ url_for('project_post') }}">
+        <button type="button">Go to Project Submission</button>
+      </a>
+    </div>
+
+    <!-- List Your Projects -->
+    <div class="card">
+      <h2>Your Projects</h2>
+      {% if projects %}
+        <ul>
+          {% for project in projects %}
+            {% if project['username'] == session['username'] %}
+              <li class="project-card">
+                <strong>{{ project['name'] }}</strong> ({{ project['domain'] }})<br>
+                {{ project['desc'] }}<br>
+                <a href="{{ url_for('view_project', project_name=project['name']) }}">View Abstract & Details</a>
+                <form action="{{ url_for('delete_project') }}" method="POST" style="display:inline;">
+                  <input type="hidden" name="project_name" value="{{ project['name'] }}">
+                  <button type="submit" class="delete">Delete</button>
+                </form>
+                <form action="{{ url_for('edit_project') }}" method="GET" style="display:inline;">
+                  <input type="hidden" name="project_name" value="{{ project['name'] }}">
+                  <button type="submit">Edit</button>
+                </form>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No projects posted yet.</p>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <a href="{{ url_for('logout') }}">Logout</a>
+      <br>
+      <p><b>Interested investors will mail you to your contact mail,check your mail regularly.<br><br>
+        Wishing you all the best for your startup journey!<br><br>
+        ~ The InnoVest Connect Team
+      </b></p>
+    </div>
+  </main>
+
+  <!-- Initialize tsParticles -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      tsParticles.load("tsparticles", {
+        particles: {
+          number: { value: 100, density: { enable: true, area: 800 } },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.3, random: true },
+          size: { value: 3, random: { enable: true, minimumValue: 1 } },
+          move: {
+            enable: true,
+            speed: 3,
+            direction: "none",
+            random: true,
+            straight: false,
+            outModes: "bounce"
+          }
+        },
+        interactivity: { events: { onhover: { enable: false }, onclick: { enable: false } } },
+        retina_detect: true
+      });
+    });
+  </script>
+
+</body>
+</html>

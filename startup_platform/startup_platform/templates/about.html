@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About • InnoVest Connect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #401f40, #7645a5);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 20px;
+            background: rgba(0,0,0,0.55);
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        h2 {
+            margin-top: 25px;
+            font-size: 24px;
+        }
+
+        .values {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .pill {
+            background: rgba(255,255,255,0.12);
+            padding: 8px 14px;
+            border-radius: 25px;
+            font-weight: bold;
+            letter-spacing: 0.2px;
+        }
+    </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="{{ url_for('home') }}" class="logo">InnoVest Connect</a>
+    </div>
+    <div class="nav-right">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      {% if session.get('user_type') == 'startup' %}
+        <a href="{{ url_for('startup_dashboard') }}">Startup Dashboard</a>
+      {% elif session.get('user_type') == 'investor' %}
+        <a href="{{ url_for('investor_dashboard') }}">Investor Dashboard</a>
+      {% endif %}
+      {% if session.get('username') %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+      {% endif %}
+    </div>
+  </nav>
+
+    <div class="container">
+        <h1>About InnoVest Connect</h1>
+
+        <p>
+            InnoVest Connect is a platform designed to bridge the gap between 
+            <strong>innovative startups</strong> and <strong>investors</strong> looking for impactful ideas.
+            Many great ideas never reach the right people, and many investors never discover the projects that match their vision.
+            We fix that.
+        </p>
+
+        <h2>Our Mission</h2>
+        <p>
+            To provide a simple, transparent, and meaningful way for startups and investors to connect,
+            collaborate, and build the future together.
+        </p>
+
+        <h2>What We Offer</h2>
+        <p>
+            • A clean platform for startups to showcase their projects  <br>
+            • Easy project uploads with documents  <br>
+            • Investor browsing with category filters  <br>
+            • A smooth environment that encourages real connections  
+        </p>
+
+        <h2>Our Core Values</h2>
+        <div class="values">
+            <div class="pill">Innovation</div>
+            <div class="pill">Transparency</div>
+            <div class="pill">Collaboration</div>
+            <div class="pill">Accessibility</div>
+            <div class="pill">Growth</div>
+        </div>
+
+        <h2>Why We Built This</h2>
+        <p>
+            Founders deserve visibility.  <br>
+            Investors deserve clarity.  <br>
+            InnoVest Connect brings both worlds together with the goal of empowering ideas that can shape tomorrow.
+        </p>
+
+        <footer>
+            © <span id="year"></span> InnovateMeet — Where Innovators Meet Investors · Made for India’s startup ecosystem
+          </footer>
+
+    </div>
+
+</body>
+</html>

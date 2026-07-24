@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup Platform</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- tsParticles library -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.10.1/tsparticles.bundle.min.js" defer></script>
+</head>
+<body>
+  
+  <!-- Particle container for random roaming particles -->
+  <div id="tsparticles"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="{{ url_for('home') }}" class="logo">InnoVest Connect</a>
+    </div>
+    <div class="nav-right">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      {% if session.get('user_type') == 'startup' %}
+        <a href="{{ url_for('startup_dashboard') }}">Startup Dashboard</a>
+      {% elif session.get('user_type') == 'investor' %}
+        <a href="{{ url_for('investor_dashboard') }}">Investor Dashboard</a>
+      {% endif %}
+      {% if session.get('username') %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header style="background-color: #e5eaf0; text-align: center; padding: 20px;">
+    <img src="https://i.ibb.co/m37ZMBp/home-banner1.png" alt="home-banner1" border="0"
+      style="height: 500px;object-fit: cover; border-radius: 10px;width: 1250px;" >
+    </a>
+    <h1  style="color: #333; font-size: 36px; margin-bottom: 10px;">Welcome to InnoVest Connect</h1>
+    <p style="color: #555; font-size: 18px;">Connecting Innovative startups with Investors. Make your ideas come alive!</p>
+  </header>
+
+  <!-- Main Links -->
+  <main class="home-links">
+    <div class="card">
+      <img src="https://i.ibb.co/hFDbGZ6G/Copilot-20251202-174441.png" alt="startup_icon" border="0" style="height: 300px; width:200px ;object-fit: cover; border-radius: 10px;" ></a>      <h2>I'm a Startup</h2>
+      <a href="{{ url_for('register') }}">Register</a> | <a href="{{ url_for('login') }}">Login</a>
+    </div>     
+    <div class="card">
+      <a href="https://ibb.co/QF0zK8Qf"><img src="https://i.ibb.co/DDdsRGWt/investors-icon.png"alt="investor-icon" border="0" style="height: 300px; width:200px ;object-fit: cover; border-radius: 10px;"></a>      <h2>I'm an Investor</h2>
+      <a href="{{ url_for('register') }}">Register</a> | <a href="{{ url_for('login') }}">Login</a>
+    </div>
+  </main>
+
+  <!-- Initialize tsParticles -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      tsParticles.load("tsparticles", {
+        particles: {
+          number: { value: 100, density: { enable: true, area: 800 } },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.3, random: true },
+          size: { value: 3, random: { enable: true, minimumValue: 1 } },
+          move: {
+            enable: true,
+            speed: 3,
+            direction: "none",
+            random: true,
+            straight: false,
+            outModes: "bounce"
+          }
+        },
+        interactivity: { events: { onhover: { enable: false }, onclick: { enable: false } } },
+        retina_detect: true
+      });
+    });
+  </script>
+
+</body>
+</html>

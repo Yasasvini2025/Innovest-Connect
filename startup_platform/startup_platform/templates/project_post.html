@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Project</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1f4037, #99f2c8);
+      color: #fff;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: rgba(0,0,0,0.6);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 40px 0 20px 0;
+      font-size: 36px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: rgba(0,0,0,0.5);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    select,
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #3498db;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+
+    ul {
+      margin-top: 20px;
+      color: #ffdddd;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="{{ url_for('home') }}" class="logo">InnoVest Connect</a>
+    </div>
+    <div class="nav-right">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('home') }}about">About</a>
+
+      {% if session.get('user_type') == 'startup' %}
+        <a href="{{ url_for('startup_dashboard') }}">Startup Dashboard</a>
+      {% elif session.get('user_type') == 'investor' %}
+        <a href="{{ url_for('investor_dashboard') }}">Investor Dashboard</a>
+      {% endif %}
+
+      {% if session.get('username') %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <h1>Create New Project</h1>
+
+  <form method="POST" action="/project_post" enctype="multipart/form-data">
+    <label for="title">Project Title:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="domain">Domain:</label>
+    <select id="domain" name="domain" required>
+      <option value="" disabled selected>Select Domain</option>
+      <option value="Health">Health</option>
+      <option value="Agriculture">Agriculture</option>
+      <option value="E-Governance">E-Governance</option>
+      <option value="AI">AI</option>
+      <option value="Sustainability">Sustainability</option>
+      <option value="Finance">Finance</option>
+      <option value="Retail">Retail</option>
+      <option value="Ed-Tech">Ed-Tech</option>
+      <option value="Energy & Waste Management">Energy & Waste Management</option>
+      <option value="Others">Others</option>
+    </select>
+
+    <label for="description">Description:</label>
+    <textarea id="description" rows="5" name="description" required></textarea>
+
+    <label for="contact_email">Contact Email:</label>
+    <input type="email" id="contact_email" name="contact_email" required>
+    <br><br>
+
+    <label for="abstract">Upload Project Abstract:</label>
+    <input type="file" id="abstract" name="abstract" accept=".pdf,.doc,.docx">
+
+    <button type="submit">Post Project</button>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </form>
+</body>
+</html>

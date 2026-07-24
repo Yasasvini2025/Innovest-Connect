@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #6114e8, #3b0ca7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: black;
+    }
+    .register-card {
+      width: 400px;
+      margin: 100px auto;
+      padding: 25px;
+      background: white;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      text-align: left;
+    }
+    .register-card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .register-card label {
+      font-weight: bold;
+    }
+    .register-card input, .register-card select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .register-card button {
+      width: 100%;
+      padding: 12px;
+      background: purple;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .register-card button:hover {
+      background: rgb(110, 0, 110);
+    }
+    .input-group {
+      position: relative;
+      width: 100%;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .toggle-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      color: #4c07d8;
+      user-select: none;
+    }
+     
+  </style>
+</head>
+<body>
+
+  <!-- Particle container for random roaming particles -->
+  <div id="tsparticles"></div>
+
+  <div class="register-card">
+    <h2>Create Account</h2>
+
+    <form method="POST" action="/register">
+      <h1>Register</h1>
+
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+       <!-- Password with toggle -->
+      <div class="input-group">
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <span class="toggle-icon" onclick="togglePassword()">👁️</span>
+      </div>
+
+      <label for="user_type">I am a:</label>
+<select id="user_type" name="user_type" required>
+    <option value="" disabled selected>Choose…</option>
+    <option value="startup">Startup</option>
+    <option value="investor">Investor</option>
+</select>
+<br><br>
+
+      <button type="submit">Register</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <script>
+    function togglePassword() {
+      const pass = document.getElementById("password");
+      pass.type = pass.type === "password" ? "text" : "password";
+    }
+  </script>
+
+  <!-- Initialize tsParticles -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      tsParticles.load("tsparticles", {
+        particles: {
+          number: { value: 100, density: { enable: true, area: 800 } },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.3, random: true },
+          size: { value: 3, random: { enable: true, minimumValue: 1 } },
+          move: {
+            enable: true,
+            speed: 3,
+            direction: "none",
+            random: true,
+            straight: false,
+            outModes: "bounce"
+          }
+        },
+        interactivity: { events: { onhover: { enable: false }, onclick: { enable: false } } },
+        retina_detect: true
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify OTP</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6114e8, #3b0ca7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .card {
+            width: 350px;
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .card h1 {
+            margin-bottom: 10px;
+            font-size: 28px;
+            color: #4c07d8;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4c07d8;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #3605a3;
+        }
+
+        .expired {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            color: red;
+            margin-top: 10px;
+            padding: 0;
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    
+    <h1>Email Verification</h1>
+
+    <p>Enter the 6-digit OTP sent to your email.</p>
+
+    <form method="POST" action="/verify_otp?username={{ username }}">
+        <input type="text" id="otp" name="otp" maxlength="6" class="input-box" placeholder="Enter OTP" required>
+
+        <button type="submit">Verify</button>
+    </form>
+
+    {% if expired %}
+        <p class="expired">Your OTP has expired.</p>
+    {% endif %}
+
+    <a href="/resend_otp?username={{ username }}">
+        <button>Resend OTP</button>
+    </a>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for m in messages %}
+            <li>{{ m }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ project.name }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1f4037, #99f2c8);
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .project-card {
+      background: rgba(0,0,0,0.6);
+      border-radius: 12px;
+      padding: 25px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+    h1 { text-align: center; margin-bottom: 20px; }
+
+    .pdf-viewer {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 20px;
+      background: #fff;
+    }
+
+    .file-link {
+      margin-top: 15px;
+      display: inline-block;
+      padding: 10px 16px;
+      background: #3498db;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="project-card">
+    <h1>{{ project.name }}</h1>
+
+    <p><strong>Domain:</strong> {{ project.domain }}</p>
+
+    <p><strong>Description:</strong></p>
+    <p>{{ project.desc }}</p>
+
+    <p><strong>Contact Email:</strong> {{ project.contact_email }}</p>
+
+
+    {% if project.file %}
+      <!-- View file link -->
+      <a class="file-link"
+         href="{{ url_for('uploaded_file', filename=project.file) }}"
+         target="_blank">
+         View Attached File
+      </a>
+
+      <p style="text-align: center; font-size: 20px; margin-top: 20px;">
+        <strong>If Interested Contact the above email</strong>
+    </p>
+    
+      
+    {% endif %}
+  </div>
+
+</body>
+</html>

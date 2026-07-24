@@ -1,0 +1,118 @@
+/* ================= NAVBAR ================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: black;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar a {
+  text-decoration: none;
+  margin-left: 20px;
+  color: white;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar a:hover {
+  color: #6c63ff;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #6c63ff;
+}
+
+/* ================= BODY ================= */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #4017d6, #0e11c4, #0e51cc);
+  background-size: 400% 400%;
+  animation: smoothBG 15s ease infinite;
+  position: relative;
+  overflow-x: hidden;
+  color: #333;
+}
+
+/* ================= HEADER ================= */
+header {
+  text-align: center;
+  padding: 40px;
+  background: whitesmoke; /* static header */
+  color: black;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ================= DASHBOARD CARDS ================= */
+.dashboard {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 50px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  width: 250px;
+}
+
+.card img {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #6c63ff;
+  font-weight: bold;
+}
+
+.banner {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.home-links {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
+  gap: 40px;
+}
+
+/* ================= GRADIENT ANIMATION ================= */
+@keyframes smoothBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ================= PARTICLES ================= */
+/* Container for tsParticles */
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* behind content */
+  pointer-events: none; /* so clicks go through */
+}
+

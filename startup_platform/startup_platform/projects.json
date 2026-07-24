@@ -1,0 +1,47 @@
+[
+    {
+        "username": "Anuradha",
+        "name": "Food Freshness sensor IoT device",
+        "domain": "Sustainability",
+        "desc": "This project focuses on an IoT-based food freshness monitoring system that uses real-time sensors inside fridges and storage units to track spoilage indicators. It analyzes temperature, humidity, and gas emissions to estimate remaining shelf life accurately. The system then alerts users when items should be consumed, cooked, or discounted, helping reduce waste and improve sustainability in both homes and retail environments.",
+        "email": "yerrollaanuradha1524@gmail.com",
+        "contact_email": "yerrollaanuradha1524@gmail.com",
+        "file": "Anuradha_Food_Freshness_sensor_IoT_device_Food_Freshness_sensor.docx"
+    },
+    {
+        "username": "Rose",
+        "name": "Pest Prediction Sensor",
+        "domain": "Agriculture",
+        "desc": "A network of tiny field sensors plus satellite data that predicts pest outbreaks before they hit the crops. The system monitors humidity, leaf wetness, soil warmth, wind patterns, and plant stress signals, then compares them with known pest behavior models. When conditions match a likely infestation window, farmers get an alert with the specific pest risk, the affected zone, and the safest intervention options.",
+        "email": "Rose05@gmail.com",
+        "contact_email": "Rose05@gmail.com",
+        "file": "Rose_Pest_Prediction_Sensor_Pest_Prediction.docx"
+    },
+    {
+        "username": "Joshua",
+        "name": "Early Habit Nudger",
+        "domain": "Health",
+        "desc": "This helps to tack our habits and align them in a healthy way.Helps people to keep track of their habits like their food,rest,exercise..etc.In this busy life this helps to keep track of our habits and maintain them in a healthy way",
+        "email": "josh08@gmail.com",
+        "contact_email": "josh08@gmail.com",
+        "file": "Joshua_Early_Habit_Nudger_Early_Habit_Nudger.docx"
+    },
+    {
+        "username": "Lakshmi",
+        "name": "Early Habit Nudger",
+        "domain": "Health",
+        "desc": "This helps to track our habits in your busy life like exercise,food,rest..etcThis helps to align our habits in a healthy way.",
+        "email": "lakshmi9@gmail.com",
+        "contact_email": "lakshmi9@gmail.com",
+        "file": "Lakshmi_Early_Habit_Nudger_Early_Habit_Nudger.docx"
+    },
+    {
+        "username": "Sireesha",
+        "name": "AI Tourist Guide",
+        "domain": "AI",
+        "desc": "Ai Tourist Guide helps tourists in new tourist locations by helping them to translate into local language. It helps them to navigate through the locations. It also helps them showing important spots and guiding through the locations",
+        "email": "sireeshak@gmail.com",
+        "contact_email": "sireeshak@gmail.com",
+        "file": "Sireesha_AI_Tourist_Guide_AI_Tourist_Guide.docx"
+    }
+]
